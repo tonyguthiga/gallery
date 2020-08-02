@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_content %}
+<div class="container-fluid">
+    <h1>{{ image.title }}</h1>
+    <div class="row">
+        <div class="col-md-8">
+            <img src="{{image.image.url}}" alt="" width="100%">
+        </div>
+        <div class="col-md-4">
+            <h5>Description:</h5>
+            <p>{{ image.description }}</p>
+            <br>
+            <h5>Location:</h5>
+            <p>{{ image.location }}</p>
+            <br>
+            <h5>Category:</h5>
+            <p>{{ image.category }}</p>
+            <br>
+            <button type="button" class="btn btn-secondary" onclick="copy('img{{image.id}}')">Copy Link</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+    </div>
+</div>
+{% endblock %}
