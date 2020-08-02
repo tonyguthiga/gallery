@@ -25,7 +25,7 @@ class Category(models.Model):
 class Image(models.Model):
     title = models.CharField(max_length=255)
     description = models.TextField()
-    image = models.FilePathField(path='/img')
+    image = models.ImageField(upload_to = 'uploads/')
     category = models.ForeignKey('Category', on_delete=models.CASCADE)
     location = models.ForeignKey('Location', on_delete=models.CASCADE)
 
@@ -42,6 +42,21 @@ class Image(models.Model):
     @classmethod
     def update_image(cls, id, title, description, location, category):
         update = cls.objects.filter(id = id).update(title = title, description = description, location = location, category = category)
+
+    @classmethod
+    def search_by_category(cls,category):
+        images = Image.objects.filter(category__name__icontains=category)
+        return images
+
+    @classmethod
+    def filter_by_location(cls,location):
+        location = cls.objects.filter(location_id=location)
+        return location
+
+    @classmethod
+    def get_all_images(cls):
+        images = cls.objects.all()
+        return images
 
 
 class Location(models.Model):
