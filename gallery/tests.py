@@ -69,4 +69,22 @@ class ImageTestClass(TestCase):
         self.location = Location(name = 'Kenya')
         self.location.save_location()
 
-        self.image = Image()
+        self.image = Image(title='Image test', description='the test', category=self.category, image_location=self.location)
+        self.assertTrue(isinstance(self.image, Image))
+
+    def test_instance(self):
+        self.assertTrue(isinstance(self.image, Image))
+
+    def tearDown(self):
+        self.image.delete_image()
+        self.category.delete_category()
+        self.location.delete_location()
+
+    def test_save_method(self):
+        self.image.save_image()
+        images  = Image.objects.all()
+        self.assertTrue(len(images)>0)
+
+    def test_get_all_images(self):
+        images = Image.get_all_images()
+        self.assertTrue(len(images)>0)
