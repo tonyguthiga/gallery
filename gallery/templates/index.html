@@ -3,11 +3,12 @@
 {% block page_content %}
 {{block.super}} 
     <div class="bg">
-        <img src="{% static 'img/home-bg.jpg' %}" style="width:100%" alt="background image">
+        <img src="{% static 'img/home-bg.jpg' %}" style="width:100% ; height:20rem;" alt="background image">
         <div class="centered">
-            <h1>Welcome am working!!</h1>
+            <h1>The sky is the ultimate art gallery just above us!!</h1>
         </div>
     </div>
+    <br>
     <!--Looping through the images-->
     <div class="container-fluid">
         <div class="row">
@@ -19,8 +20,8 @@
                             <h5 class="card-title">{{ image.title }}</h5>
                             <p class="card-text">{{ image.description }}</p>
                             <a href="{% url 'detail' image.pk %}"
-                            class="btn btn-primary">
-                                Read More
+                            class="btn btn-default">
+                            {{ image.title }}
                             </a>
                         </div>
                     </div>
