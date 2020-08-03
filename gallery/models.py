@@ -27,7 +27,7 @@ class Image(models.Model):
     description = models.TextField()
     image = models.ImageField(upload_to = 'uploads/')
     category = models.ForeignKey('Category', on_delete=models.CASCADE)
-    location = models.ForeignKey('Location', on_delete=models.CASCADE)
+    image_location = models.ForeignKey('Location', on_delete=models.CASCADE)
 
     def save_image(self):
         self.save()
@@ -40,8 +40,8 @@ class Image(models.Model):
         self.delete()
 
     @classmethod
-    def update_image(cls, id, title, description, location, category):
-        update = cls.objects.filter(id = id).update(title = title, description = description, location = location, category = category)
+    def update_image(cls, id, title, description, image_location, category):
+        update = cls.objects.filter(id = id).update(title = title, description = description, image_location = location, category = category)
 
     @classmethod
     def search_by_category(cls,category):
@@ -49,9 +49,9 @@ class Image(models.Model):
         return images
 
     @classmethod
-    def filter_by_location(cls,location):
-        location = cls.objects.filter(location_id=location)
-        return location
+    def filter_by_location(cls, image_location):
+        images_location = cls.objects.filter(image_location_id=image_location)
+        return images_location
 
     @classmethod
     def get_all_images(cls):
