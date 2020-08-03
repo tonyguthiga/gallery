@@ -19,10 +19,10 @@ def search_image(request):
         message = 'You havent searched yet'
         return render(request, 'search.html',{'message':message})
 
-def location_filter(request, location):
+def location_filter(request, id):
     locations = Location.objects.all()
-    location = Location.get_location_id(location)
-    images = Image.filter_by_location(location)
+    location = Location.get_location_id(id=id)
+    images = Image.filter_by_location(image_location)
     name = f'{location} Photos' 
     return render(request, 'location.html', {'name':name, 'images':images, 'locations':locations, 'location':location})
 
