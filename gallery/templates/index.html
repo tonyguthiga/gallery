@@ -15,14 +15,11 @@
             {% for image in images %}
                 <div class="col-md-4">
                     <div class="card mb-2">
-                        <img class="card-img-top" src="{{image.image.url}}" style="height: 300px;">
+                        <a href="{% url 'detail' image.pk %}"><img class="card-img-top" src="{{image.image.url}}" style="height: 300px;">
+                            </a>
                         <div class="card-body">
                             <h5 class="card-title">{{ image.title }}</h5>
                             <p class="card-text">{{ image.description }}</p>
-                            <a href="{% url 'detail' image.pk %}"
-                            class="btn btn-default">
-                            {{ image.title }}
-                            </a>
                         </div>
                     </div>
                 </div>
